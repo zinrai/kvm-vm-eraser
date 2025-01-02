@@ -84,7 +84,8 @@ func eraseVM(vmName string) error {
 		return fmt.Errorf("failed to get VM image paths: %v", err)
 	}
 
-	undefineCmd := exec.Command("sudo", "virsh", "undefine", vmName)
+	// https://www.libvirt.org/manpages/virsh.html#undefine
+	undefineCmd := exec.Command("sudo", "virsh", "undefine", "--snapshots-metadata", vmName)
 	if err := undefineCmd.Run(); err != nil {
 		return fmt.Errorf("failed to undefine VM: %v", err)
 	}
