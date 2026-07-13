@@ -27,16 +27,23 @@ type Source struct {
 	File string `xml:"file,attr"`
 }
 
-func main() {
-	if !isVirshAvailable() {
-		fmt.Println("Error: 'virsh' command not found. Please ensure libvirt-clients is installed.")
-		os.Exit(1)
-	}
+var (
+	version = "dev"
+	commit  = "none"
+	date    = "unknown"
+)
 
+func main() {
 	flag.Parse()
 
 	if flag.NArg() != 1 {
+		fmt.Printf("kvm-vm-eraser %s (commit %s, built %s)\n", version, commit, date)
 		fmt.Println("Usage: kvm-vm-eraser VM_NAME")
+		os.Exit(1)
+	}
+
+	if !isVirshAvailable() {
+		fmt.Println("Error: 'virsh' command not found. Please ensure libvirt-clients is installed.")
 		os.Exit(1)
 	}
 
