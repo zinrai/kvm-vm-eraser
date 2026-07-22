@@ -19,14 +19,6 @@
 - Always ensure you have backups of important data before erasing a VM.
 - The tool assumes that the VM name is unique and that there's only one disk associated with the VM.
 
-## Installation
-
-Build the tool:
-
-```
-$ go build
-```
-
 ## Usage
 
 Basic usage:
